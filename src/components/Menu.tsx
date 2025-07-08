@@ -7,7 +7,7 @@ function Menu() {
   };
   const [selectedItem_, setSelectedItem_] = useState<string | null>(null);
   return (
-    <ul className="flex justify-center items-center gap-10 text-white text-semibold font-semibold">
+    <ul className="flex justify-center [@media(max-width:853px)]:gap-5 items-center gap-10 text-white text-semibold font-semibold">
       <li
         className={`${
           selectedItem_ === "home" ? "underline" : ""
