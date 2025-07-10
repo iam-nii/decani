@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Drawer,
   List,
   ListItem,
   ListItemButton,
@@ -10,6 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/images/decani-white.svg";
 import Menu from "./Menu";
 import { useState } from "react";
+import { ChevronLeft } from "@mui/icons-material";
 export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
 
@@ -18,12 +20,39 @@ export default function Header() {
   };
   const menuItems = ["Home", "Services", "About", "Contact Us"];
   const DrawerList = (
-    <Box>
+    <Box
+      sx={{
+        background: "#F4A950",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
+      <Button
+        onClick={toogleDrawer(false)}
+        sx={{ width: "20px", height: "50px", padding: "0px" }}
+        endIcon={
+          <ChevronLeft sx={{ color: "black", width: "50px", height: "30px" }} />
+        }
+      ></Button>
+
       <List>
         {menuItems.map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
+          <ListItem key={text} className="font-bold" disablePadding>
+            <ListItemButton className="bg-red-300">
+              <ListItemText
+                primary={text}
+                slotProps={{
+                  primary: {
+                    sx: {
+                      color: "white",
+                      textAlign: "left",
+                      fontWeight: "bold",
+                      fontFamily: "Open-sans",
+                      fontSize: 20,
+                    },
+                  },
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
@@ -56,9 +85,17 @@ export default function Header() {
         {/* Mobile devices menu */}
       </div>
       <div className="absolute right-0 hidden [@media(max-width:540px)]:block">
-        <Button>
-          <MenuIcon />
-        </Button>
+        <Button onClick={toogleDrawer(true)} endIcon={<MenuIcon />}></Button>
+        <Drawer
+          open={drawerOpen}
+          anchor="top"
+          onClose={toogleDrawer(false)}
+          sx={{
+            opacity: "95%",
+          }}
+        >
+          {DrawerList}
+        </Drawer>
       </div>
     </nav>
   );
