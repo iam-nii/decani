@@ -2,6 +2,10 @@ import Derrick from "./assets/images/Derrick.png";
 import Jessica from "./assets/images/Jessica.png";
 import Nii from "./assets/images/Nii.png";
 import Emmanuel from "./assets/images/Emmanuel.png";
+import webDev from "./assets/web-dev.svg";
+import creativeDesign from "./assets/creative-design.svg";
+import DigitalMarketing from "./assets/digital-marketing.svg";
+import BrandStrategy from "./assets/brand-strategy.svg";
 
 const sections = [
   {
@@ -57,4 +61,27 @@ const teamMembers = [
   },
 ];
 
-export { sections, teamMembers };
+const services = [
+  {
+    icon: webDev,
+    header: "Web Development",
+    body: "We build fast, modern websites tailored to your business needs — from landing pages to full web platforms.",
+  },
+  {
+    icon: creativeDesign,
+    header: "Creative Design",
+    body: "From branding to UI/UX design, we craft visually compelling experiences that engage your audience.",
+  },
+  {
+    icon: DigitalMarketing,
+    header: "Digital Marketing",
+    body: "Our team drives traffic and conversion through targeted campaigns, SEO, social media, and content strategy.",
+  },
+  {
+    icon: BrandStrategy,
+    header: "Brand Strategy",
+    body: "We help shape strong, memorable brands with strategic messaging, identity systems, and positioning.",
+  },
+];
+
+export { sections, teamMembers, services };
