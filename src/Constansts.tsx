@@ -18,6 +18,7 @@ const sections = [
   },
   {
     header: "Meet The Team",
+    content: "",
   },
   {
     header: "About Us",

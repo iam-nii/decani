@@ -5,7 +5,7 @@ function Menu() {
     console.log(item);
     setSelectedItem_(item);
   };
-  const [selectedItem_, setSelectedItem_] = useState<string | null>(null);
+  const [selectedItem_, setSelectedItem_] = useState<string | null>("home");
   return (
     <ul className="flex justify-center [@media(max-width:853px)]:gap-5 items-center gap-10 text-white text-semibold font-semibold">
       <li
