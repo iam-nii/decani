@@ -1,9 +1,10 @@
-import Twitter from "../assets/twitter-yellow.svg";
-import LinkedIn from "../assets/linkedin-yellow.svg";
-import Facebook from "../assets/facebook-yellow.svg";
-import Instagram from "../assets/instagram-yellow.svg";
-import DecaniLogo from "../assets/images/decani-white.svg";
+import Twitter from "../../assets/icons/twitter-yellow.svg";
+import LinkedIn from "../../assets/icons/linkedin-yellow.svg";
+import Facebook from "../../assets/icons/facebook-yellow.svg";
+import Instagram from "../../assets/icons/instagram-yellow.svg";
+import DecaniLogo from "../../assets/images/decani-white.svg";
 import { useEffect, useState } from "react";
+
 function Footer() {
   const [year, setYear] = useState<number | null>(null);
   useEffect(() => {
@@ -11,6 +12,7 @@ function Footer() {
     const year = date.getFullYear();
     setYear(year);
   }, []);
+
   return (
     <footer className="h-[50vh] bg-pblack">
       <div className="flex  gap-44">

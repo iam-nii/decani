@@ -8,7 +8,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import logo from "../assets/images/decani-white.svg";
+import logo from "../../assets/images/decani-white.svg";
 import Menu from "./Menu";
 import { useState } from "react";
 import { ChevronLeft } from "@mui/icons-material";

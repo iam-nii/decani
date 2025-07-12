@@ -1,11 +1,11 @@
-import Derrick from "./assets/images/derrick.png";
-import Jessica from "./assets/images/Jessica.png";
-import Nii from "./assets/images/nii.png";
-import Emmanuel from "./assets/images/emmanuel.png";
-import webDev from "./assets/web-dev.svg";
-import creativeDesign from "./assets/creative-design.svg";
-import DigitalMarketing from "./assets/digital-marketing.svg";
-import BrandStrategy from "./assets/brand-strategy.svg";
+import Derrick from "../assets/images/derrick.png";
+import Jessica from "../assets/images/Jessica.png";
+import Nii from "../assets/images/nii.png";
+import Emmanuel from "../assets/images/emmanuel.png";
+import webDev from "../assets/icons/web-dev.svg";
+import creativeDesign from "../assets/icons/creative-design.svg";
+import DigitalMarketing from "../assets/icons/digital-marketing.svg";
+import BrandStrategy from "../assets/icons/brand-strategy.svg";
 
 const sections = [
   {
