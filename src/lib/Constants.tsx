@@ -17,7 +17,7 @@ const sections = [
     content: "We offer a wide array of services",
   },
   {
-    header: "Meet The Team",
+    header: "Meet Our Team",
     content: "",
   },
   {
