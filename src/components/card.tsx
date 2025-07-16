@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({
       className={`px-7 py-20 w-64 h-[28rem] font-[Lexend] flex items-center ${
         index % 2 === 0
           ? "bg-pyellow"
-          : "bg-pblack border-[0.01px] border-pyellow "
+          : "bg-pblack border-[0.01px] border-pyellow border"
       }  `}
     >
       <div className="flex flex-col justify-between gap-[25px] h-[305px] w-[250px]">
