@@ -280,13 +280,13 @@ function LandingPage() {
           )}
         </section>
       ))}
-      <div className="h-fit w-[100dvw] flex flex-col">
+      <div className="h-fit w-[100dvw] flex flex-col mb-10 md:mb-20">
         <Footer />
-        <img
+        {/* <img
           className="z-[50] w-[1100px] sm:w-full"
           src={DividerYellow}
           alt="Yellow divider"
-        />
+        /> */}
       </div>
     </main>
   );
