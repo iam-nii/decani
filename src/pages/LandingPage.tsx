@@ -9,8 +9,8 @@ import DecaniYellowLogo from "../assets/images/decani-yellow.svg";
 import { Link } from "react-router-dom";
 import Footer from "../components/layouts/Footer";
 // import DividerYellow from "../assets/divider-yellow.svg";
-import Card from "../components/card";
 import { ChevronRight } from "@mui/icons-material";
+import { motion } from "motion/react"
 
 function LandingPage() {
   return (
@@ -96,34 +96,6 @@ function LandingPage() {
             <>
               <div className="h-fit">
                 <Services />
-                {/* <div className="h-fit w-full flex items-center justify-border md:justify-center my-[100px]">
-                  <div className="w-full sm:w-full md:w-fit lg:w-fit 2xl:w-full lg:max-w-[1440px] 2xl:max-w-[1500px] items-center flex flex-col justify-center sm:mx-7 md:mx-0 lg:mx-0 gap-10 lg:p-10 lg:py-20">
-                    <div className="flex flex-col justify-center items-center lg:items-start lg:justify-start w-full lg:mx-10">
-                      <h1 className="font-sans font-bold text-[32px] md:text-[40px] lg:text-[40px] text-white lg:top-28 lg:left-36">
-                        {section.header}
-                      </h1>
-                      <h2 className=" lg:top-28 lg:left-36 text-pyellow text-[20px] md:text-[30px]">
-                        {section.content}
-                      </h2>
-                    </div>
-                    <div className="w-fit justify-center">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4 gap-5 2xl:gap-10 lg:mt-24 sm:mx-10 lg:mx-0 sm:p-0 w-full ">
-                        {services.map((service, index) => (
-                          <div key={index}>
-                            <Card
-                              index={index}
-                              icon={service.icon}
-                              header={service.header}
-                              body={service.body}
-                              alt={`${service.header} icon`}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* <img src={divider} alt="" className="absolute bottom-0" /> */}
-                {/* </div> */}
               </div>
             </>
           )}

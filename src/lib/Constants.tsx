@@ -92,13 +92,13 @@ const services = [
   {
     icon: DigitalMarketing,
     image: Marketing,
-    header: "Digital Marketing",
+    header: "Marketing",
     body: "Our team drives traffic and conversion through targeted campaigns, SEO, social media, and content strategy.",
   },
   {
     icon: BrandStrategy,
     image: Branding,
-    header: "Brand Strategy",
+    header: "Branding",
     body: "We help shape strong, memorable brands with strategic messaging, identity systems, and positioning.",
   },
 ];
