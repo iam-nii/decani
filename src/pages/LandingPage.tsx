@@ -1,5 +1,6 @@
 import { Avatar, Button } from "@mui/material";
 import Header from "../components/layouts/Header";
+import Services from "../components/layouts/Services"
 import { sections, teamMembers, services } from "../lib/Constants";
 // import divider from "../assets/divider.svg";
 import stripes from "../assets/stripes.png";
@@ -7,7 +8,7 @@ import decaniLogo from "../assets/images/decani-white.svg";
 import DecaniYellowLogo from "../assets/images/decani-yellow.svg";
 import { Link } from "react-router-dom";
 import Footer from "../components/layouts/Footer";
-import DividerYellow from "../assets/divider-yellow.svg";
+// import DividerYellow from "../assets/divider-yellow.svg";
 import Card from "../components/card";
 import { ChevronRight } from "@mui/icons-material";
 
@@ -23,15 +24,13 @@ function LandingPage() {
             ${index === 0 ? "h-[100dvh]" : ""}
             ${index === 1 ? "h-fit" : ""}
             ${index === 2 ? "h-fit" : ""}
-            ${
-              index === 3
-                ? "h-fit  2xl:h-[80dvh] overflow-x-visible overflow-y-visible"
-                : ""
+            ${index === 3
+              ? "h-fit  2xl:h-[80dvh] overflow-x-visible overflow-y-visible"
+              : ""
             }
-            ${
-              index === 4
-                ? "h-fit min-h-[50dvh] md:min-h-[43dvh]  flex items-center"
-                : ""
+            ${index === 4
+              ? "h-fit min-h-[50dvh] md:min-h-[43dvh]  flex items-center"
+              : ""
             }
             `}
         >
@@ -96,7 +95,8 @@ function LandingPage() {
           {index === 1 && (
             <>
               <div className="h-fit">
-                <div className="h-fit w-full flex items-center justify-border md:justify-center my-[100px]">
+                <Services />
+                {/* <div className="h-fit w-full flex items-center justify-border md:justify-center my-[100px]">
                   <div className="w-full sm:w-full md:w-fit lg:w-fit 2xl:w-full lg:max-w-[1440px] 2xl:max-w-[1500px] items-center flex flex-col justify-center sm:mx-7 md:mx-0 lg:mx-0 gap-10 lg:p-10 lg:py-20">
                     <div className="flex flex-col justify-center items-center lg:items-start lg:justify-start w-full lg:mx-10">
                       <h1 className="font-sans font-bold text-[32px] md:text-[40px] lg:text-[40px] text-white lg:top-28 lg:left-36">
@@ -121,9 +121,9 @@ function LandingPage() {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* <img src={divider} alt="" className="absolute bottom-0" /> */}
-                </div>
+                {/* </div> */}
               </div>
             </>
           )}
@@ -280,13 +280,22 @@ function LandingPage() {
           )}
         </section>
       ))}
-      <div className="h-fit w-[100dvw] flex flex-col mb-10 md:mb-20">
-        <Footer />
-        {/* <img
-          className="z-[50] w-[1100px] sm:w-full"
-          src={DividerYellow}
-          alt="Yellow divider"
-        /> */}
+      <div className="relative h-fit w-full overflow-hidden md:rounded-t-[80px] py-10 md:py-20">
+        {/* Background Image */}
+        <img
+          src="./decani-bg2.avif"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover blur-sm scale-105 opacity-55"
+        />
+
+        {/* Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-pyellow/10 via-black/50 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
+
+
+        <div className="relative z-10 my-20">
+          <Footer />
+        </div>
       </div>
     </main>
   );

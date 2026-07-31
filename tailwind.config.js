@@ -4,11 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        pyellow: "#F4A950",
+        // pyellow: "#F4A950",
+        pyellow: "#E39E4B",
         pblack: "#161B21",
       },
       fontFamily: {
-        sans: ['"Open Sans"', "sans-serif"],
+        sans: ['"Google Sans"', "sans-serif"],
       },
     },
   },

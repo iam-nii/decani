@@ -6,6 +6,14 @@ import webDev from "../assets/icons/web-dev.svg";
 import creativeDesign from "../assets/icons/creative-design.svg";
 import DigitalMarketing from "../assets/icons/digital-marketing.svg";
 import BrandStrategy from "../assets/icons/brand-strategy.svg";
+import Development from "../assets/images/services/development.jpg"
+import UI from "../assets/images/services/ui.jpg"
+import Marketing from "../assets/images/services/marketing.jpg"
+import Design from "../assets/images/services/design.jpg"
+import Branding from "../assets/images/services/branding.jpg"
+
+
+
 
 const sections = [
   {
@@ -65,21 +73,31 @@ const teamMembers = [
 const services = [
   {
     icon: webDev,
-    header: "Web Development",
+    image: Development,
+    header: "Development",
     body: "We build fast, modern websites tailored to your business needs — from landing pages to full web platforms.",
   },
   {
     icon: creativeDesign,
+    image: Design,
     header: "Creative Design",
     body: "From branding to UI/UX design, we craft visually compelling experiences that engage your audience.",
   },
   {
+    icon: creativeDesign,
+    image: UI,
+    header: "UI/UX Design",
+    body: "From branding to UI/UX design, we craft visually compelling experiences that engage your audience.",
+  },
+  {
     icon: DigitalMarketing,
+    image: Marketing,
     header: "Digital Marketing",
     body: "Our team drives traffic and conversion through targeted campaigns, SEO, social media, and content strategy.",
   },
   {
     icon: BrandStrategy,
+    image: Branding,
     header: "Brand Strategy",
     body: "We help shape strong, memorable brands with strategic messaging, identity systems, and positioning.",
   },
