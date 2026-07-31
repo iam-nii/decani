@@ -73,7 +73,7 @@ export default function Header() {
   );
 
   return (
-    <nav className="w-full bg-pyellow flex items-center justify-center ">
+    <nav className="w-full bg-transparent flex items-center justify-center fixed z-50">
       <div className="flex flex-row w-full gap-[30rem] [@media(max-width:853px)]:gap-[8rem] [@media(max-width:1024px)]:gap-[20rem] md:gap-[20rem] h-16 items-center  justify-between xl:max-w-[1440px] md:pr-16">
         <div>
           <img 

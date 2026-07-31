@@ -1,46 +1,106 @@
 import { useState } from "react";
+import { motion } from "motion/react";
+
+const menuItems = [
+  {
+    id: "home",
+    label: "Home",
+  },
+  {
+    id: "services",
+    label: "Services",
+  },
+  {
+    id: "team",
+    label: "Team",
+  },
+  {
+    id: "about",
+    label: "About",
+  },
+  {
+    id: "contact",
+    label: "Contact Us",
+  },
+];
 
 function Menu() {
-  const handleMenuChange = (item: string) => {
-    console.log(item);
-    setSelectedItem_(item);
+  const [active, setActive] = useState("home");
+
+  const scrollToSection = (id: string) => {
+    setActive(id);
+
+    const section = document.getElementById(id);
+
+    section?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
-  const [selectedItem_, setSelectedItem_] = useState<string | null>("home");
-  
+
   return (
-    <ul className="flex justify-center [@media(max-width:853px)]:gap-5 items-center gap-10 text-white text-semibold text-[17px] font-semibold">
-      <li
-        className={`hover:font-extrabold ${
-          selectedItem_ === "home" ? "pb-2 border-b-4" : ""
-        } cursor-pointer`}
-        onClick={() => handleMenuChange("home")}
-      >
-        Home
-      </li>
-      <li
-        className={`hover:font-extrabold ${
-          selectedItem_ === "services" ? "pb-2 border-b-4" : ""
-        } cursor-pointer`}
-        onClick={() => handleMenuChange("services")}
-      >
-        Services
-      </li>
-      <li
-        className={`hover:font-extrabold ${
-          selectedItem_ === "about" ? "pb-2 border-b-4" : ""
-        } cursor-pointer`}
-        onClick={() => handleMenuChange("about")}
-      >
-        About
-      </li>
-      <li
-        className={`hover:font-extrabold ${
-          selectedItem_ === "contact" ? "pb-2 border-b-4" : ""
-        } cursor-pointer`}
-        onClick={() => handleMenuChange("contact")}
-      >
-        Contact Us
-      </li>
+    <ul className="
+      flex 
+      items-center 
+      justify-center 
+      gap-1 
+      rounded-[30px] 
+      border 
+      border-white/40
+      p-[4px]
+      text-sm 
+      font-normal 
+      text-white 
+      lg:gap-4
+    ">
+      {menuItems.map((item) => {
+        const isActive = active === item.id;
+
+        return (
+          <li
+            key={item.id}
+            onClick={() => scrollToSection(item.id)}
+            className="
+              relative
+              cursor-pointer
+              px-4
+              py-2
+            "
+          >
+
+            {isActive && (
+              <motion.div
+                layoutId="active-pill"
+                className="
+                  absolute
+                  inset-0
+                  rounded-[30px]
+                  bg-white
+                "
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 30,
+                }}
+              />
+            )}
+
+            <span
+              className={`
+                relative z-10
+                transition-colors duration-300
+                ${isActive
+                  ? "font-bold text-pblack"
+                  : "text-white hover:text-pyellow"
+                }
+              `}
+            >
+              {item.label}
+            </span>
+
+          </li>
+        );
+      })}
     </ul>
   );
 }

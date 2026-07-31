@@ -10,15 +10,23 @@ import { Link } from "react-router-dom";
 import Footer from "../components/layouts/Footer";
 // import DividerYellow from "../assets/divider-yellow.svg";
 import { ChevronRight } from "@mui/icons-material";
-import { motion } from "motion/react"
+import Hero from "../components/layouts/Hero"
 
 function LandingPage() {
+  const sectionIds = [
+    "home",
+    "services",
+    "team",
+    "about",
+    "contact",
+  ];
+
   return (
     <main className="bg-pblack overflow-x-hidden">
       {sections.map((section, index) => (
         <section
           key={index}
-          id={`section-${index + 1}`}
+          id={sectionIds[index]}
           className={`overflow-hidden w-full min-h-fit max-h-full
             ${index !== 0 ? "bg-pblack" : ""}
             ${index === 0 ? "h-[100dvh]" : ""}
@@ -37,8 +45,9 @@ function LandingPage() {
           {/* Section 1 */}
           {index === 0 && (
             <>
+            <Hero />
               {/* Image layer */}
-              <div
+              {/* <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
                   // backgroundImage: "url('./decani-bg.png')",
@@ -48,12 +57,12 @@ function LandingPage() {
                 }}
               />
               {/* Gradient layer */}
-              <div
+              {/* <div
                 className="absolute inset-0 bg-gradient-to-b from-white/20 to-black/80 bg-blend-darken"
                 style={{ zIndex: 1 }}
               />
               {/* Content layer */}
-              <div className="absolute flex flex-col h-[100%] w-screen z-10">
+              {/* <div className="absolute flex flex-col h-[100%] w-screen z-10">
                 <header className="z-40 w-full justify-center">
                   <Header />
                 </header>
@@ -87,7 +96,7 @@ function LandingPage() {
                   alt="decani logo"
                   className="absolute bottom-8 right-14 h-3 z-50"
                 />
-              </div>
+              </div> */}
             </>
           )}
 
@@ -231,19 +240,21 @@ function LandingPage() {
           {/* Section 5 */}
           {index === 4 && (
             <div className="mb-10 h-fit min-h-full w-full flex items-center justify-center">
-              <div className="h-fit w-full flex flex-col justify-center items-center lg:max-w-[1440px] 2xl:max-w-[1500px] mx-10 sm:mx-20">
+              <div className="h-fit w-full flex flex-col justify-center items-center lg:max-w-[1440px] 2xl:max-w-[1500px] mx-5 sm:mx-20">
                 <div
                   className="flex flex-col
                   gap-6 h-fit w-full lg:max-w-[1440px] 2xl:max-w-[1500px] my-20 "
                 >
-                  <h1 className="text-white text-[38px]  sm:text-6xl md:text-8xl md:w-[1000px]">
-                    {section.header}
+                  <h1 className="flex flex-col text-white text-[60px] sm:text-6xl md:text-8xl md:w-[1000px] font-bold leading-[0.8]">
+                    {/* {section.header} */}
+                    <span>Imagine.</span>
+                    <span>Then let us Build.</span>
                   </h1>
                   <Link
                     to={{ pathname: "/contact" }}
-                    className="text-pyellow text-[28px]"
+                    className="text-pblack bg-white w-fit px-6 py-2 rounded-[35px]"
                   >
-                    <span>Reach out to us</span>
+                    <span className="text-lg md:text-xl">Start a project</span>
                     <ChevronRight className="text-3xl" />
                   </Link>
                 </div>
@@ -261,8 +272,9 @@ function LandingPage() {
         />
 
         {/* Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-pyellow/10 via-black/50 to-black" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" />
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black opacity-30" /> */}
+        <div className="absolute inset-0 bg-gradient-to-b from-pyellow/10 via-pblack/60 to-black" />
+        {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" /> */}
 
 
         <div className="relative z-10 my-20">

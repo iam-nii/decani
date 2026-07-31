@@ -14,8 +14,8 @@ function Footer() {
   }, []);
 
   return (
-    <footer className="h-fit pt-10 pb-2 px-10 sm:px-20 flex flex-col items-center">
-      <div className="relative w-full h-fit lg:max-w-[1440px] 2xl:max-w-[1500px] border-[2px] border-white/40 rounded-[30px] p-6 md:p-20 bg-white/30 backdrop-blur-3xl overflow-hidden py-10">
+    <footer className="h-fit pt-10 pb-2 px-8 sm:px-20 flex flex-col items-center">
+      <div className="relative w-full h-fit lg:max-w-[1440px] 2xl:max-w-[1500px] border-[0.5px] lg:border-[2px] border-white/30 lg:border-white/40 rounded-[20px] lg:rounded-[50px] p-4 sm:p-6 md:p-20 bg-white/30 backdrop-blur-3xl overflow-hidden py-10">
         <div className="absolute -top-20 -right-20 w-72 h-72 bg-pblack/40 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-pblack/45 rounded-full blur-3xl pointer-events-none" />
 
@@ -30,7 +30,7 @@ function Footer() {
                   height={150}
                   className="w-30 sm:w-30 md:w-40"
                 />
-                <p className="text-[13px] md:text-sm text-gray-100/80 font-[70] md:font-thin">Our commitment to quality, ingenuity, and client satisfaction drives us to explore new horizons and push boundaries every day. Join us on this exciting journey, and let's create, innovate, and succeed together.</p>
+                <p className="text-[13px] md:text-sm text-gray-100/80 font-[70] md:font-thin leading-4">Our commitment to quality, ingenuity, and client satisfaction drives us to explore new horizons and push boundaries every day. Join us on this exciting journey, and let's create, innovate, and succeed together.</p>
               </div>
               <div className="flex gap-3 md:gap-5">
                 <img
