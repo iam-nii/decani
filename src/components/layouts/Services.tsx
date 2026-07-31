@@ -6,7 +6,7 @@ const Services = () => {
   const [activeService, setActiveService] = useState(services[0]);
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-pblack px-6 py-12 sm:px-8 md:min-h-fit md:py-20 lg:px-10 lg:py-32 lg:pb-48">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-pblack px-6 py-12 sm:px-8  md:py-20 lg:px-10 lg:py-32 lg:pb-48">
       {/* Background Image */}
       <AnimatePresence mode="wait">
         <motion.img

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
 const menuItems = [
@@ -55,7 +55,35 @@ function Menu() {
     ">
       {menuItems.map((item) => {
         const isActive = active === item.id;
+        
+        useEffect(() => {
 
+          const observer = new IntersectionObserver(
+            entries => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  setActive(entry.target.id);
+                }
+              })
+            },
+            {
+              threshold: 0.5
+            }
+          );
+
+
+          menuItems.forEach(item => {
+            const section = document.getElementById(item.id);
+
+            if (section) {
+              observer.observe(section);
+            }
+          });
+
+
+          return () => observer.disconnect();
+
+        }, []);
         return (
           <li
             key={item.id}

@@ -127,27 +127,80 @@ const Hero = () => {
 
                   <h1
                      className="
-                     flex
-                     flex-col
-                     justify-center
-                     text-center
-                     font-sans
-                     text-white
-                     text-[70px]
-                     sm:text-[73px]
-                     lg:text-[180px]
-                     font-extrabold
-                     uppercase
-                     leading-[0.83]
-                     tracking-[-0.08em]
-                  "
+                  font-sans
+                  text-white
+                  text-[70px]
+                  sm:text-[90px]
+                  lg:text-[180px]
+                  font-extrabold
+                  leading-[0.83]
+                  tracking-[-0.08em]
+                  uppercase
+                  flex
+                  flex-col
+                  items-center
+                "
                   >
-                     <span>Decani</span>
-                     <span>Creative</span>
-                     <span>Agency</span>
+                     <motion.span
+                        initial={{
+                           opacity: 0,
+                           y: 60,
+                           filter: "blur(15px)",
+                        }}
+                        animate={{
+                           opacity: 1,
+                           y: 0,
+                           filter: "blur(0px)",
+                        }}
+                        transition={{
+                           duration: 1,
+                           delay: 0.2,
+                        }}
+                     >
+                        Decani
+                     </motion.span>
+
+
+                     <motion.span
+                        initial={{
+                           opacity: 0,
+                           y: 60,
+                           filter: "blur(15px)",
+                        }}
+                        animate={{
+                           opacity: 1,
+                           y: 0,
+                           filter: "blur(0px)",
+                        }}
+                        transition={{
+                           duration: 1,
+                           delay: 0.4,
+                        }}
+                     >
+                        Creative
+                     </motion.span>
+
+
+                     <motion.span
+                        initial={{
+                           opacity: 0,
+                           y: 60,
+                           filter: "blur(15px)",
+                        }}
+                        animate={{
+                           opacity: 1,
+                           y: 0,
+                           filter: "blur(0px)",
+                        }}
+                        transition={{
+                           duration: 1,
+                           delay: 0.6,
+                        }}
+                     >
+                        Agency
+                     </motion.span>
+
                   </h1>
-
-
                </div>
 
             </motion.div>
