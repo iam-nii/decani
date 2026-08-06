@@ -106,7 +106,7 @@ const Services = () => {
 
             {/* Icon */}
             <div className="order-3 hidden lg:flex justify-center lg:order-3 lg:flex-1">
-              <div className="relative overflow-hidden  px-10 py-12 backdrop-blur-xl sm:px-14 sm:py-16 lg:px-20 lg:py-24">
+              <div className="relative overflow-hidden  px-10 py-12sm:px-14 sm:py-16 lg:px-20 lg:py-24">
 
                 {/* Glow */}
                 {/* <motion.div

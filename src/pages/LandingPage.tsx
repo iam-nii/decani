@@ -22,13 +22,13 @@ function LandingPage() {
   ];
 
   return (
-    <main className="bg-pblack overflow-x-hidden">
+    <main className="bg-black overflow-x-hidden">
       {sections.map((section, index) => (
         <section
           key={index}
           id={sectionIds[index]}
           className={`overflow-hidden w-full min-h-fit max-h-full
-            ${index !== 0 ? "bg-pblack" : ""}
+            ${index !== 0 ? "bg-black" : ""}
             ${index === 0 ? "h-[100dvh]" : ""}
             ${index === 1 ? "h-fit" : ""}
             ${index === 2 ? "h-fit" : ""}
@@ -45,7 +45,7 @@ function LandingPage() {
           {/* Section 1 */}
           {index === 0 && (
             <>
-            <Hero />
+              <Hero />
               {/* Image layer */}
               {/* <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -266,14 +266,20 @@ function LandingPage() {
       <div className="relative h-fit w-full overflow-hidden md:rounded-t-[80px] py-10 md:py-20">
         {/* Background Image */}
         <img
-          src="./decani-bg2.avif"
+          src="./bg-4.jpg"
           alt=""
-          className="absolute inset-0 w-full h-full object-cover blur-sm scale-105 opacity-55"
+          className="absolute inset-0 w-full h-full object-cover scale-105 opacity-90"
         />
 
         {/* Overlays */}
         {/* <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black opacity-30" /> */}
         <div className="absolute inset-0 bg-gradient-to-b from-pyellow/10 via-pblack/60 to-black" />
+
+        <div className="absolute inset-0 before:absolute before:top-0 before:left-0 before:w-full
+     before:h-full before:content-[''] before:opacity-[0.03] before:z-10 before:pointer-events-none
+     before:bg-[url('https://www.ui-layouts.com/noise.gif')]" />
+
+        <div className="absolute inset-0 opacity-0 md:opacity-50 bg-gradient-to-b from-pyellow/20 via-pblack/90 to-black" />
         {/* <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/20" /> */}
 
 
