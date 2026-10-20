@@ -4,12 +4,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        // pyellow: "#F4A950",
+        ink: "#0A0B0A",
+        "ink-2": "#14160F",
+        paper: "#F3EFE4",
+        "paper-2": "#E7E0D0",
+        accent: "#E39E4B",
+        "accent-deep": "#B8752A",
+        "accent-ink": "#8A5117",
+        muted: "#9C978A",
+        // legacy aliases
         pyellow: "#E39E4B",
-        pblack: "#161B21",
+        pblack: "#0A0B0A",
       },
       fontFamily: {
-        sans: ['"Google Sans"', "sans-serif"],
+        display: ['"Archivo"', "system-ui", "sans-serif"],
+        sans: ['"Archivo"', "system-ui", "sans-serif"],
+        serif: ['"Instrument Serif"', "Georgia", "serif"],
+        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
+      },
+      maxWidth: {
+        sheet: "1560px",
+      },
+      transitionTimingFunction: {
+        stamp: "cubic-bezier(0.16, 1, 0.3, 1)",
       },
     },
   },

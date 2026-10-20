@@ -1,98 +1,150 @@
-import Twitter from "../../assets/icons/twitter-yellow.svg";
-import LinkedIn from "../../assets/icons/linkedin-yellow.svg";
-import Facebook from "../../assets/icons/facebook-yellow.svg";
-import Instagram from "../../assets/icons/instagram-yellow.svg";
-import DecaniLogo from "../../assets/images/decani-white.svg";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useLenis } from "lenis/react";
+import { useReducedMotion } from "motion/react";
+import logo from "../../assets/images/decani-white.svg";
+import { footer, site } from "../../lib/site";
+import { ArrowUp } from "../ui/Arrow";
 
-function Footer() {
-  const [year, setYear] = useState<number | null>(null);
+function useAccraTime() {
+  const [time, setTime] = useState("");
   useEffect(() => {
-    const date = new Date();
-    const year = date.getFullYear();
-    setYear(year);
+    const format = () =>
+      new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Accra",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(new Date());
+    setTime(format());
+    const timer = window.setInterval(() => setTime(format()), 30000);
+    return () => window.clearInterval(timer);
   }, []);
+  return time;
+}
+
+export default function Footer() {
+  const lenis = useLenis();
+  const reduced = useReducedMotion();
+  const time = useAccraTime();
+  const year = new Date().getFullYear();
+
+  const toTop = () => {
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.2 });
+      return;
+    }
+    window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+  };
 
   return (
-    <footer className="h-fit pt-10 pb-0 px-8 sm:px-20 flex flex-col items-center">
-      <div className="relative w-full h-fit lg:max-w-[1440px] 2xl:max-w-[1500px] border-[0.5px] lg:border-[2px] border-white/0 lg:border-white/0 rounded-[20px] lg:rounded-[50px] p-4 sm:p-6 md:p-20 bg-white/30 backdrop-blur-sm overflow-hidden py-10">
-        <div className="absolute -top-20 -right-20 w-72 h-72 bg-pblack/40 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-72 h-72 bg-pblack/45 rounded-full blur-3xl pointer-events-none" />
-
-        <div className=" h-full w-full flex flex-col justify-between">
-          <div className="grid grid-cols-2 lg:grid-rows-1 lg:grid-cols-10 w-full justify-between place-content-between  gap-y-8 gap-x-5">
-            <div className="col-span-4 flex flex-col gap-10 items-start md:items-start h-fit w-full md:pr-10">
-              <div className=" space-y-5">
-                <img
-                  src={DecaniLogo}
-                  alt=""
-                  width={150}
-                  height={150}
-                  className="w-30 sm:w-30 md:w-40"
-                />
-                <p className="text-[13px] md:text-sm text-gray-100/80 font-[70] md:font-thin leading-4">Our commitment to quality, ingenuity, and client satisfaction drives us to explore new horizons and push boundaries every day. Join us on this exciting journey, and let's create, innovate, and succeed together.</p>
-              </div>
-              <div className="flex gap-3 md:gap-5">
-                <img
-                  src={Twitter}
-                  alt="Twitter icon"
-                  className="w-7 cursor-pointer"
-                />
-                <img
-                  src={LinkedIn}
-                  alt="LinkedIn icon"
-                  className="w-7 cursor-pointer"
-                />
-                <img
-                  src={Facebook}
-                  alt="Facebook icon"
-                  className="w-7 cursor-pointer"
-                />
-                <img
-                  src={Instagram}
-                  alt="instagram icon"
-                  className="w-7 cursor-pointer"
-                />
-              </div>
-            </div>
-            <div className="col-span-2 flex flex-col w-full space-y-1 md:space-y-3">
-              <h1 className="text-pyellow text-[15px] md:text-xl">{("Navigation").toUpperCase()}</h1>
-              <ul className="text-white text-[13px] sm:text-[15px] font-thin space-y-1 md:space-y-3">
-                <li className="cursor-pointer">Home</li>
-                <li className="cursor-pointer">Service</li>
-                <li className="cursor-pointer">About</li>
-                <li className="cursor-pointer">Sign Up</li>
-                <li className="cursor-pointer">Team</li>
-              </ul>
-            </div>
-            <div className="col-span-2 flex flex-col space-y-1 md:space-y-3 w-full">
-              <h1 className="text-pyellow text-[15px] md:text-xl">{("Quick Links").toUpperCase()}</h1>
-              <ul className="text-white text-[13px] sm:text-[15px] font-thin space-y-1 md:space-y-3">
-                <li className="cursor-pointer">Contact Us</li>
-                <li className="cursor-pointer">Our Journey</li>
-                <li className="cursor-pointer">FAQs</li>
-              </ul>
-            </div>
-            <div className="col-span-2 flex flex-col relative space-y-1 md:space-y-3">
-              <h1 className="text-pyellow text-[15px] md:text-xl">{("Legal & Cookies").toUpperCase()}</h1>
-              <ul className="text-white text-[13px] sm:text-[15px] font-thin space-y-1 md:space-y-3">
-                <li className="cursor-pointer">Terms of Service</li>
-                <li className="cursor-pointer">Privary Policy</li>
-                <li className="cursor-pointer">Cookie Notice</li>
-              </ul>
-            </div>
-
+    <footer className="relative overflow-hidden border-t border-paper/10 bg-ink pt-16 md:pt-20">
+      <div className="sheet">
+        <div className="grid gap-10 pb-14 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-4">
+            <img
+              src={logo}
+              alt="Decani Creative Hub"
+              width={140}
+              height={32}
+              className="h-[26px] w-auto"
+            />
+            <p className="copy mt-6 max-w-[34ch]">{footer.blurb}</p>
+            <a
+              href={`mailto:${site.email}`}
+              className="link-line mt-7 inline-block py-1.5 text-[15px] text-paper/85 hover:text-paper"
+            >
+              {site.email}
+            </a>
           </div>
-          <div className="w-full mt-10 mb-5 sm:mb-2 md:mb-0 flex flex-col-reverse gap-y-10 md:flex-row justify-around md:justify-between items-center">
-            <p className="text-white text-[14px] font-thin">
-              ©{year} Decani. All rights reserved.
-            </p>
 
+          <nav
+            aria-label="Studio"
+            className="md:col-span-2 md:col-start-6"
+          >
+            <h2 className="label mb-5 text-paper/60">Studio</h2>
+            <ul className="space-y-3">
+              {footer.columns[0].links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
+                    className="inline-block py-1.5 text-[14px] text-paper/70 transition-colors duration-300 hover:text-paper"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav
+            aria-label="Services"
+            className="md:col-span-2 md:col-start-8"
+          >
+            <h2 className="label mb-5 text-paper/60">Services</h2>
+            <ul className="space-y-3">
+              {footer.columns[1].links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
+                    className="inline-block py-1.5 text-[14px] text-paper/70 transition-colors duration-300 hover:text-paper"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="md:col-span-3 md:col-start-10">
+            <h2 className="label mb-5 text-paper/60">Contact</h2>
+            <p className="text-[14px] leading-relaxed text-paper/70">
+              {site.location}
+              <br />
+              Working worldwide
+            </p>
+            <p className="label mt-6 flex items-center gap-2 text-paper/60">
+              Local time
+              <span className="text-paper/80" aria-live="off">
+                {time || "--:--"}
+              </span>
+              <span className="text-paper/60">GMT</span>
+            </p>
+            <Link
+              to="/contact"
+              className="group mt-5 inline-flex items-center gap-2 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-accent"
+            >
+              Start a project
+              <ArrowUp className="h-3.5 w-3.5 rotate-45 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
+
+        <div className="flex flex-col gap-4 border-t border-paper/10 py-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="label text-paper/60">
+            © {year} Decani Creative Hub. All rights reserved.
+          </p>
+          <p className="label hidden text-paper/60 md:block">
+            Brand / Digital / Campaigns
+          </p>
+          <button
+            type="button"
+            onClick={toTop}
+            className="label group flex items-center gap-2 self-start py-2 text-paper/60 transition-colors duration-300 hover:text-paper sm:self-auto"
+          >
+            Back to top
+            <ArrowUp className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+          </button>
+        </div>
       </div>
+
+      <p
+        aria-hidden="true"
+        className="type-display -mb-[0.13em] select-none whitespace-nowrap px-[1.2vw] text-[clamp(4.2rem,20vw,20rem)] leading-[0.7] tracking-[-0.06em] text-transparent"
+        style={{ WebkitTextStroke: "1px rgba(243,239,228,0.22)" }}
+      >
+        Decani
+      </p>
     </footer>
   );
 }
-
-export default Footer;

@@ -1,24 +1,397 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Boldonse&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  /* overflow-x: hidden; */
-  scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+/* ---------------------------------------------------------------- tokens */
+
+:root {
+  --ink: #0a0b0a;
+  --ink-2: #14160f;
+  --paper: #f3efe4;
+  --paper-2: #e7e0d0;
+  --accent: #e39e4b;
+  --accent-deep: #b8752a;
+  --muted: #9c978a;
+  --line: rgba(243, 239, 228, 0.16);
+  --line-strong: rgba(243, 239, 228, 0.32);
+  --line-ink: rgba(10, 11, 10, 0.16);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --pad: clamp(1.25rem, 4.2vw, 4rem);
 }
 
-body::-webkit-scrollbar {
-  display: none;
+/* ---------------------------------------------------------------- base */
+
+html {
+  background: var(--ink);
+  color-scheme: dark;
+  scroll-padding-top: 5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--ink);
 }
 
-/* .lexend-<uniquifier > {
-  font-family: "Lexend", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-} */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.on-paper :where(a, button, input, textarea, select):focus-visible,
+.on-accent :where(a, button, input, textarea, select):focus-visible {
+  outline-color: var(--ink);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------- layout + type */
+
+@layer components {
+  .sheet {
+    width: 100%;
+    max-width: 1560px;
+    margin-inline: auto;
+    padding-inline: var(--pad);
+  }
+
+  .sheet-wide {
+    width: 100%;
+    max-width: 1760px;
+    margin-inline: auto;
+    padding-inline: var(--pad);
+  }
+
+  .section-pad {
+    padding-block: clamp(5rem, 11vw, 10rem);
+  }
+
+  .hairline {
+    border-top: 1px solid var(--line);
+  }
+
+  .hairline-ink {
+    border-top: 1px solid var(--line-ink);
+  }
+
+  .label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  @media (min-width: 768px) {
+    .label {
+      font-size: 0.75rem;
+    }
+  }
+
+  .type-display {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 800;
+    font-stretch: 108%;
+    text-transform: uppercase;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+  }
+
+  .type-hero {
+    font-size: clamp(4.2rem, 17vw, 13.5rem);
+    line-height: 0.8;
+    letter-spacing: -0.055em;
+  }
+
+  /* Keep the widest word inside a 320px screen. */
+  @media (max-width: 359px) {
+    .type-hero {
+      font-size: clamp(3rem, 16vw, 3.25rem);
+    }
+  }
+
+  .type-section {
+    font-size: clamp(2.3rem, 5.4vw, 5.6rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .type-sub {
+    font-size: clamp(1.45rem, 2.4vw, 2.15rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+
+  .type-quote {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    line-height: 0.98;
+    text-transform: none;
+  }
+
+  .type-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(243, 239, 228, 0.78);
+  }
+
+  @media (min-width: 768px) {
+    .type-outline {
+      -webkit-text-stroke-width: 1.5px;
+    }
+  }
+
+  .type-outline-ink {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(10, 11, 10, 0.45);
+  }
+
+  .lede {
+    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+  }
+
+  .copy {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(243, 239, 228, 0.68);
+  }
+
+  @media (min-width: 768px) {
+    .copy {
+      font-size: 1.0625rem;
+    }
+  }
+
+  .copy-ink {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(10, 11, 10, 0.68);
+  }
+
+  @media (min-width: 768px) {
+    .copy-ink {
+      font-size: 1.0625rem;
+    }
+  }
+
+  .link-line {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: background-size 0.45s var(--ease);
+  }
+
+  .link-line:hover,
+  .link-line:focus-visible {
+    background-size: 0% 1px;
+  }
+
+  .arrow-shift {
+    transition: transform 0.45s var(--ease);
+  }
+
+  a:hover .arrow-shift,
+  button:hover .arrow-shift,
+  a:focus-visible .arrow-shift,
+  button:focus-visible .arrow-shift {
+    transform: translateX(4px);
+  }
+
+  .paper-surface {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .paper-surface .copy {
+    color: rgba(10, 11, 10, 0.7);
+  }
+
+  .paper-surface .label {
+    color: rgba(10, 11, 10, 0.58);
+  }
+
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(10, 11, 10, 0.28);
+    border-radius: 0;
+    padding: 0.7rem 0;
+    font-size: 1.0625rem;
+    color: var(--ink);
+    transition: border-color 0.3s var(--ease);
+    appearance: none;
+  }
+
+  .field::placeholder {
+    color: rgba(10, 11, 10, 0.38);
+  }
+
+  .field:hover {
+    border-color: rgba(10, 11, 10, 0.5);
+  }
+
+  .field:focus {
+    border-color: var(--ink);
+    outline: none;
+  }
+
+  .field:focus-visible {
+    outline: 1px solid var(--ink);
+    outline-offset: 4px;
+  }
+
+  select.field {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%230A0B0A' stroke-width='1.6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 2px center;
+    padding-right: 1.75rem;
+  }
+}
+
+/* ---------------------------------------------------------------- parts */
+
+.grain-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  background-image: url("/grain.png");
+  background-repeat: repeat;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+.stripe-band {
+  height: 26px;
+  background-image: repeating-linear-gradient(
+    115deg,
+    var(--accent) 0,
+    var(--accent) 24px,
+    transparent 24px,
+    transparent 62px
+  );
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

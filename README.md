@@ -1,69 +1,68 @@
-# React + TypeScript + Vite
+# Decani Creative Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The studio site for Decani Creative Hub, Accra. Brand, digital and campaign work.
 
-Currently, two official plugins are available:
+Built as a working press sheet: numbered plates, crop marks, a registration square, a
+stripe band and grain. The design record (concept, palette, type, layout families) lives in
+[`DESIGN.md`](./DESIGN.md).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Stack
 
-## Expanding the ESLint configuration
+- Vite 7 + React 19 + TypeScript
+- Tailwind CSS 3 with tokens in `src/index.css`
+- `motion` for choreography (line masks, clip reveals, plate swaps)
+- `lenis` for smooth scroll, disabled under `prefers-reduced-motion`
+- React Router 7 (`/`, `/contact`, designed 404)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Run
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # type check + production build to dist/
+npm run preview  # serve dist/ locally
+npm run lint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Where things live
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| What | Where |
+| --- | --- |
+| All copy, services, team, studio facts | `src/lib/site.ts` |
+| Colour, type, grain, field and marquee styles | `src/index.css` |
+| Tailwind theme (colours, fonts, sheet width, easing) | `tailwind.config.js` |
+| Page sections | `src/components/layouts/` |
+| Shared UI (reveals, crop marks, buttons, arrows) | `src/components/ui/` |
+| Pages and routing | `src/pages/`, `src/router.tsx` |
+| Fonts, SEO, OG/Twitter tags, JSON-LD | `index.html` + `src/lib/usePageMeta.ts` |
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Images
+
+- Hero: `public/hero-wide.jpg` (1920×1100) and `public/hero-tall.jpg` (900×1400).
+- Services: `src/assets/images/opt/*-800.jpg` + `*-1600.jpg`, referenced with `srcSet`.
+- Team portraits: `src/assets/images/*.png` (currently 249×249, replace with larger files).
+- Rebuild images and the grain tile with `scripts/prep-images.ps1` (Windows PowerShell, uses
+  System.Drawing). It reads the originals in `src/assets/images/services/` and
+  `src/assets/images/source/`.
+
+## QA scripts (optional, need Playwright)
+
+```bash
+npm run preview -- --port 4400   # in one shell
+node scripts/shoot.mjs           # screenshots + report.json in .shots/
+node scripts/og.mjs              # rebuilds public/og.jpg from the live preview
 ```
+
+`shoot.mjs` checks console errors, failed requests, horizontal overflow, small tap targets,
+missing `alt` text and hidden content under reduced motion. Set `BASE` to point at another
+origin.
+
+## Deploying
+
+This is a client-routed SPA. The host must rewrite unknown paths to `index.html`, otherwise
+`/contact` will 404 on a hard refresh. On Netlify add `/* /index.html 200`; on Vercel add a
+rewrite to `/index.html`; on nginx use `try_files $uri $uri/ /index.html;`.
+
+The current `DockerFile` runs `npm run dev` and exposes 8080. That works for a demo, but a
+production image should run `npm run build` and serve `dist/` behind a static server with
+the rewrite above.

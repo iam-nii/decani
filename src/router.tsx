@@ -1,15 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
-import Landing from "./pages/LandingPage";
-import Contact from "./pages/ContactPage";
+import SiteLayout from "./components/layouts/SiteLayout";
+import LandingPage from "./pages/LandingPage";
+import ContactPage from "./pages/ContactPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
+    element: <SiteLayout />,
+    children: [
+      { index: true, element: <LandingPage /> },
+      { path: "contact", element: <ContactPage /> },
+      { path: "*", element: <NotFoundPage /> },
+    ],
   },
 ]);
 
